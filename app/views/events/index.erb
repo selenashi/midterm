@@ -1,0 +1,10 @@
+<%@events.each do |event| %>
+  <div class="event">
+    <h3><%= event.name%></h3>
+    <p><%event.date%></p>
+    <p><%event.num_user%></p>
+    <p><%event.reg_price%></p>
+    <p><%event.disc_price%></p>
+    <p><%event.min_required%></p>
+  </div>
+<% end %>
