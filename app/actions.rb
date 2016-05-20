@@ -1,5 +1,8 @@
 # Homepage (Root path)
+
+require_relative 'actions/my_event'
 require_relative 'views/helper'
+
 
 get '/' do
   erb :index

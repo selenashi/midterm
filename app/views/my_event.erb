@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -6,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>1 Col Portfolio - Start Bootstrap Template</title>
+    
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -14,13 +17,7 @@
     <!-- Custom CSS -->
     <link href="css/1-col-portfolio.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+   
 </head>
 
 <body>
@@ -36,13 +33,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="#">Events</a>
                     </li>
                     <li>
                         <a href="#">Services</a>
@@ -63,9 +60,43 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Page Heading
-                    <small>Secondary Text</small>
+                <h1 class="page-header">
                 </h1>
             </div>
         </div>
+
+<div class="container">
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">My Events 
+                    <small> You are currently attending <%=@user_events.count%> Events </small>
+                </h1>
+            </div>
+        </div>
+        
         <!-- /.row -->
+        <!-- Project One -->
+
+      <div class="row">
+
+
+          <div class="col-md-7">
+            
+              <a href="#">
+               <% @user_events.each do |event| %> 
+                    <img class="img-responsive" src="<%= event.image_url %>" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3></h3>
+                
+                  <h4><%= event.name %></h4>
+                  <p> <%= event.date %> <%= event.num_user %> <%= event.disc_price %> </p>
+                  <a class="btn btn-primary" href="registration/<%= event.id %>/remove">Remove Event <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <% end %>
+            </div>
+        </div>
+
