@@ -6,7 +6,7 @@ class EventsImporter
   end
 
   def import
-    field_names = ['name', 'date', 'num_user', 'reg_price', 'disc_price', 'min_required']
+    field_names = ['name', 'date', 'num_user', 'reg_price', 'disc_price', 'min_required', 'image_url', 'location']
     puts "Importing events from '#{@filename}'"
     failure_count = 0
     Event.transaction do
