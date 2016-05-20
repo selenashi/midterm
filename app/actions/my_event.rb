@@ -6,11 +6,14 @@ get '/my_events' do
   erb :'my_event'
 end
 
+
 get '/registration/:event_id/remove' do 
   # TODO: change 3 by current_user.id
   Registration.find_by(event_id: params[:event_id], user_id: 1).destroy
   redirect '/my_events'
 end
+
+
 
 # post '/:user_id/events' do
 #   @event = Event.find(params[:id])

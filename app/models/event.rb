@@ -7,5 +7,9 @@ class Event < ActiveRecord::Base
   validates :num_user, numericality: { only_integer: true }
   validates :reg_price, :disc_price, numericality: { greater_than: 0 }
 
-  #after_create :minimum_required_reached
+
+  def min_required_reached?
+    event = Event.find(params[:event_id])
+    event.registration.count >= events.min_required
+  end
 end
