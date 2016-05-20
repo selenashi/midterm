@@ -7,6 +7,8 @@ class AddEvents < ActiveRecord::Migration
       t.float :reg_price
       t.float :disc_price 
       t.integer :min_required
+      t.string :image_url
+      t.string :location
       
       t.timestamps
     end

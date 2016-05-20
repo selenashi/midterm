@@ -1,9 +1,11 @@
 # Homepage (Root path)
+require_relative 'views/helper'
+
 get '/' do
   erb :index
 end
 
 get '/events' do
-  @events = Events.all
+  @events = Event.all
   erb :'events/index'
 end

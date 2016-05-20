@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519005734) do
+ActiveRecord::Schema.define(version: 20160520002629) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20160519005734) do
     t.float    "reg_price"
     t.float    "disc_price"
     t.integer  "min_required"
+    t.string   "image_url"
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160519005734) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone_number"
   end
 
 end
