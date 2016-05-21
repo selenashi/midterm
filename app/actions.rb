@@ -3,17 +3,27 @@
 require_relative 'actions/my_event'
 require_relative 'views/helper'
 
-# helpers do
-#   def current_user
-#     if session[:user_id]
-#       User.find(session[:user_id])
-#     end
-#   end
-# end
+helpers do
+  def current_user
+    if session[:user_id]
+      User.find(session[:user_id])
+    end
+  end
+end
 
 
 get '/' do
   erb :index
+end
+
+get '/login' do
+  erb :login
+end
+
+post '/login' do
+  @user = User.create(username: params[:username], email: params[:email], password: params[:password], phone_number: params[:phone])
+  session[:user_id] = @user.id
+  redirect '/events'
 end
 
 get '/events' do
@@ -46,13 +56,16 @@ end
 
 post '/events/:id/payment' do
   @event = Event.find(params[:event_id])
-  current_user.update(phone_number: params[:phone], email: params[:email])
-  @registration = Registration.create(
+  if current_user
+    current_user.update(phone_number: params[:phone], email: params[:email])
+    @registration = Registration.create(
     user_id: current_user.id,
     event_id: @event.id,
-    num_tickets: params[:num_tickets]   
-  )
-  redirect '/my_events'
+    num_tickets: params[:num_tickets])
+    redirect '/my_events'
+  else
+    redirect '/login'
+  end
 end
 
 
