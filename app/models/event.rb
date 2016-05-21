@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   has_many :registrations  
   has_many :users, through: :registrations 
 
+  # after_save :min_required_reached
+
   validates :name, :date, :num_user, :reg_price, :disc_price, :image_url, :location, presence: true 
   validates :min_required, presence: true
   validates :num_user, numericality: { only_integer: true }
@@ -10,6 +12,8 @@ class Event < ActiveRecord::Base
 
   def min_required_reached?
     event = Event.find(params[:event_id])
-    event.registration.count >= events.min_required
+    event.num_user >= events.min_required
+    
   end
+
 end

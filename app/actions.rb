@@ -1,6 +1,5 @@
 # Homepage (Root path)
 
-require_relative 'actions/my_event'
 require_relative 'views/helper'
 
 helpers do
@@ -26,6 +25,12 @@ post '/login' do
   redirect '/events'
 end
 
+get '/login/as/:user_id' do |user_id|
+ session[:user_id] = user_id
+ session[:user_name] = User.find(user_id).username
+ redirect '/'
+end
+
 get '/events' do
   @events = Event.all
   erb :'events/index'
@@ -41,28 +46,34 @@ get '/events/:id/payment' do
   erb :'payment_id'
 end
 
-get '/my_events' do
+get '/my_event' do
   # TODO current_user.events
-  @user_events = User.find(1).events
-  erb :'my_event'
+  # @registration = Registration.find(current_user.id)
+  @user_events = current_user.events
+  erb :'/my_event'
 end
 
 
 get '/registration/:event_id/remove' do 
   # TODO: change 3 by current_user.id
-  Registration.find_by(event_id: params[:event_id], user_id: 1).destroy
-  redirect '/my_events'
+  Registration.find_by(event_id: params[:event_id], user_id: current_user).destroy
+  redirect '/my_event'
 end
 
 post '/events/:id/payment' do
   @event = Event.find(params[:event_id])
+
   if current_user
     current_user.update(phone_number: params[:phone], email: params[:email])
     @registration = Registration.create(
     user_id: current_user.id,
     event_id: @event.id,
     num_tickets: params[:num_tickets])
-    redirect '/my_events'
+
+    binding.pry
+    @event.num_user += params[:num_tickets].to_i
+    @event.save
+    redirect '/my_event'
   else
     redirect '/login'
   end
