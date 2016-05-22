@@ -1,6 +1,7 @@
 require 'active_record'
 require 'active_support/all'
 require './lib/events_importer'
+require './lib/images_importer'
 require './app/models/event'
 # Add new app/ and lib/ files here when they are created.
 
