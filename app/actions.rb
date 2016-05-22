@@ -25,11 +25,6 @@ post '/login' do
   redirect '/events'
 end
 
-get '/login/as/:user_id' do |user_id|
- session[:user_id] = user_id
- session[:user_name] = User.find(user_id).username
- redirect '/'
-end
 
 get '/events' do
   @events = Event.all
@@ -70,7 +65,6 @@ post '/events/:id/payment' do
     event_id: @event.id,
     num_tickets: params[:num_tickets])
 
-    binding.pry
     @event.num_user += params[:num_tickets].to_i
     @event.save
     redirect '/my_event'

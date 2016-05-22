@@ -34,7 +34,8 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Payment $<%= format_price(@event.disc_price) %>
+                <h1 class="page-header">Payment $
+                <span id="total"><%= format_price(@event.disc_price) %></span>
                     <small></small>
                 </h1>
             </div>
@@ -69,6 +70,11 @@
       <option>3</option>
       <option>4</option>
       <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
     </select>
   </fieldset>
 
