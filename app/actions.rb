@@ -46,7 +46,7 @@ get '/my_event' do
   # TODO current_user.events
   # @registration = Registration.find(current_user.id)
   @user_events = current_user.events
-  erb :'/my_event'
+  erb :'my_event'
 end
 
 

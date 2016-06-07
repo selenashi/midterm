@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20160522044136) do
   end
 
   create_table "registrations", force: :cascade do |t|
-    t.integer  "users_id"
-    t.integer  "events_id"
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.integer  "num_tickets"
     t.datetime "created_at"
     t.datetime "updated_at"
